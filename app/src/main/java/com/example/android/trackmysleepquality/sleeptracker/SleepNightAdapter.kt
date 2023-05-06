@@ -11,10 +11,10 @@ import com.example.android.trackmysleepquality.R
 import com.example.android.trackmysleepquality.convertDurationToFormatted
 import com.example.android.trackmysleepquality.convertNumericQualityToString
 import com.example.android.trackmysleepquality.database.SleepNight
-import javax.xml.transform.Templates
+import androidx.recyclerview.widget.ListAdapter
 
 
-class SleepNightAdapter: RecyclerView.Adapter<SleepNightAdapter.ViewHolder>() {
+class SleepNightAdapter : ListAdapter<SleepNight, SleepNightAdapter.ViewHolder>(SleepNightDiffCallback()) {
     class ViewHolder private constructor(itemView: View) : RecyclerView.ViewHolder(itemView){
         val sleepLength: TextView = itemView.findViewById(R.id.sleep_length)
         val quality: TextView = itemView.findViewById(R.id.quality_string)
@@ -44,14 +44,8 @@ class SleepNightAdapter: RecyclerView.Adapter<SleepNightAdapter.ViewHolder>() {
             )
         }
     }
-    var data = listOf<SleepNight>()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
-    override fun getItemCount() = data.size
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = data[position]
+        val item = getItem(position)
         holder.bind(item)
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType:
