@@ -138,5 +138,4 @@ fun convertDurationToFormatted(startTimeMilli: Long, endTimeMilli: Long, res: Re
 
            class TextItemViewHolder(val textView: TextView):
                RecyclerView.ViewHolder(textView)
-       }
-   }
+
